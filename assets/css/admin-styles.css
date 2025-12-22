@@ -1,0 +1,370 @@
+/**
+ * Admin Styles
+ *
+ * @package UpsiteOpeningHours
+ * @since 1.0.0
+ */
+
+/* Calendar Manager */
+.upsite-calendar-manager {
+    margin-block-start: 20px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Date Range Selector */
+.upsite-range-selector {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    margin-block-end: 20px;
+}
+
+.upsite-range-selector h3 {
+    margin-block-start: 0;
+    margin-block-end: 10px;
+    color: #2271b1;
+}
+
+.upsite-range-selector .description {
+    margin-block-end: 15px;
+    color: #666;
+}
+
+.upsite-range-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.range-dates,
+.range-times,
+.range-options {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.range-dates label,
+.range-times label,
+.range-options label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.range-dates input[type="date"],
+.range-times input[type="time"],
+.range-options input[type="text"] {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.range-dates input[type="date"] {
+    width: 130px;
+}
+
+.range-times input[type="time"] {
+    width: 100px;
+}
+
+.range-options input[type="text"] {
+    width: 180px;
+}
+
+.range-options label:last-child {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding-block-end: 6px;
+}
+
+.range-options input[type="checkbox"] {
+    margin: 0;
+}
+
+#upsite-apply-range {
+    margin-block-end: 0;
+    height: 32px;
+}
+
+#upsite-apply-range:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 1200px) {
+    .upsite-range-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .range-options input[type="text"] {
+        width: 240px;
+    }
+}
+
+@media (max-width: 782px) {
+    .range-dates,
+    .range-times {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .range-dates input[type="date"],
+    .range-times input[type="time"],
+    .range-options input[type="text"] {
+        width: 100%;
+    }
+}
+
+.upsite-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: 20px;
+    gap: 15px;
+}
+
+.upsite-calendar-header h2 {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+/* Calendar Grid */
+.upsite-calendar {
+    width: 100%;
+    direction: rtl;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-block-end: 10px;
+    direction: rtl;
+}
+
+.calendar-day-header {
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    background: #f0f0f1;
+    border-radius: 3px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    direction: rtl;
+}
+
+.calendar-cell {
+    min-height: 80px;
+    padding: 8px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.calendar-cell:not(.empty):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.calendar-cell.empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+}
+
+.calendar-cell.enabled {
+    border-color: #4CAF50;
+}
+
+.calendar-cell.special {
+    border-width: 2px;
+}
+
+.calendar-day-number {
+    font-weight: 600;
+    font-size: 14px;
+    margin-block-end: 5px;
+}
+
+.calendar-day-info {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* Calendar Legend */
+.upsite-calendar-legend {
+    margin-block-start: 20px;
+    padding-block-start: 15px;
+    border-block-start: 1px solid #ddd;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+/* Modal */
+.upsite-modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.upsite-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.upsite-modal-close {
+    color: #aaa;
+    position: absolute;
+    inset-inline-end: 15px;
+    inset-block-start: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.upsite-modal-close:hover,
+.upsite-modal-close:focus {
+    color: #000;
+}
+
+#upsite-modal-title {
+    margin-block-start: 0;
+    margin-block-end: 20px;
+}
+
+.form-field {
+    margin-block-end: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-block-end: 5px;
+    font-weight: 600;
+}
+
+.form-field input[type="time"],
+.form-field input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.form-field input[type="checkbox"] {
+    margin-inline-end: 8px;
+}
+
+.form-actions {
+    margin-block-start: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Shortcodes Info */
+.upsite-shortcodes-info {
+    background: #fff;
+    padding: 20px;
+    margin-block-start: 20px;
+}
+
+.shortcode-example {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-block-end: 20px;
+    border-inline-start: 4px solid #2271b1;
+    border-radius: 3px;
+}
+
+.shortcode-example code {
+    background: #2271b1;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    display: inline-block;
+    margin-block: 5px;
+}
+
+.shortcode-example h4 {
+    margin-block-start: 0;
+}
+
+.shortcode-example h5 {
+    margin-block-start: 15px;
+    margin-block-end: 8px;
+}
+
+.shortcode-example ul {
+    margin-block-start: 5px;
+}
+
+.shortcode-example ul li {
+    margin-block-end: 5px;
+}
+
+/* RTL Support */
+[dir="rtl"] .calendar-grid,
+[dir="rtl"] .calendar-header {
+    direction: rtl;
+}
+
+/* Settings Forms */
+.form-table th {
+    padding-inline-start: 10px;
+}
+
+.form-table td {
+    padding-inline-end: 10px;
+}
+
+
