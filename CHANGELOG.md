@@ -2,6 +2,17 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
+## [1.4.0] - 2025-12-22
+
+### Added
+- All non-enabled future dates now display with light purple circles and "סגור" (closed) status
+- Past dates remain gray without styling
+
+### Changed
+- Increased calendar and list view maximum width by 30% (380px → 494px)
+- Increased calendar day cell size by 30% (40px → 52px)
+- Improved visual hierarchy and readability
+
 ## [1.3.0] - 2025-12-22
 
 ### Added

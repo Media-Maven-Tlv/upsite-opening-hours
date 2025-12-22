@@ -27,7 +27,7 @@
 /* Calendar Widget - iOS Style */
 .upsite-hours-calendar-widget {
     margin-block: 20px;
-    max-width: 380px!important;
+    max-width: 494px!important; /* 380px * 1.3 = 494px */
     margin-inline: auto;
 }
 
@@ -120,8 +120,8 @@
 
 .upsite-calendar-day {
     aspect-ratio: 1;
-    width: 40px;
-    height: 40px;
+    width: 52px; /* 40px * 1.3 = 52px */
+    height: 52px; /* 40px * 1.3 = 52px */
     background: transparent;
     border: none;
     display: flex;
@@ -369,7 +369,7 @@
 /* Compact List View - iOS Style */
 .upsite-hours-list {
     margin-block: 20px;
-    max-width: 380px;
+    max-width: 494px; /* 380px * 1.3 = 494px */
     margin-inline: auto;
 }
 

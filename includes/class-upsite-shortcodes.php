@@ -75,11 +75,20 @@ class Upsite_Shortcodes {
                 $date_str = sprintf('%s-%s-%02d', $year, $month, $day);
                 $date_data = isset($dates_by_date[$date_str]) ? $dates_by_date[$date_str] : null;
                 
+                // Determine if this date should be marked
+                $is_enabled = $date_data && $date_data->is_enabled;
+                // Show disabled style for: dates explicitly marked as disabled, OR dates in the past
+                $date_obj = new DateTime($date_str);
+                $today = new DateTime();
+                $today->setTime(0, 0, 0);
+                $is_past = $date_obj < $today;
+                $is_disabled_marked = !$is_enabled && !$is_past; // Show all non-enabled future dates as closed
+                
                 $days[] = array(
                     'day' => $day,
                     'date' => $date_str,
-                    'enabled' => $date_data && $date_data->is_enabled,
-                    'disabled_marked' => $date_data && !$date_data->is_enabled,
+                    'enabled' => $is_enabled,
+                    'disabled_marked' => $is_disabled_marked,
                     'has_special' => $date_data && !empty($date_data->special_note),
                     'opening' => $date_data ? self::format_time($date_data->opening_time) : '',
                     'closing' => $date_data ? self::format_time($date_data->closing_time) : '',
