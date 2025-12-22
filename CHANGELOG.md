@@ -2,6 +2,15 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
+## [1.3.0] - 2025-12-22
+
+### Added
+- GitHub auto-updater integration for automatic plugin updates
+- Customizable legend text setting (can be hidden if left empty)
+
+### Changed
+- Fixed calendar day cell sizing to 40px × 40px for consistent display
+
 ## [1.2.0] - 2025-12-04
 
 ### Changed

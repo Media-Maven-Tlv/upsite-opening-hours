@@ -27,7 +27,7 @@
 /* Calendar Widget - iOS Style */
 .upsite-hours-calendar-widget {
     margin-block: 20px;
-    max-width: 380px;
+    max-width: 380px!important;
     margin-inline: auto;
 }
 
