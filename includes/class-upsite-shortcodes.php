@@ -33,7 +33,7 @@ class Upsite_Shortcodes {
         $atts = shortcode_atts(array(
             'year' => null,
             'month' => null,
-            'months' => 3,
+            'months' => 12,
             'title' => 'Opening Hours',
         ), $atts, 'upsite_hours_calendar');
         
@@ -67,6 +67,7 @@ class Upsite_Shortcodes {
             $year = $current_month->format('Y');
             $month = $current_month->format('m');
             $month_name = self::get_hebrew_month_name($year . '-' . $month);
+            // Get day of week (0=Sunday, 1=Monday, ..., 6=Saturday)
             $first_day = intval($current_month->format('w'));
             $days_in_month = intval($current_month->format('t'));
             
@@ -77,12 +78,8 @@ class Upsite_Shortcodes {
                 
                 // Determine if this date should be marked
                 $is_enabled = $date_data && $date_data->is_enabled;
-                // Show disabled style for: dates explicitly marked as disabled, OR dates in the past
-                $date_obj = new DateTime($date_str);
-                $today = new DateTime();
-                $today->setTime(0, 0, 0);
-                $is_past = $date_obj < $today;
-                $is_disabled_marked = !$is_enabled && !$is_past; // Show all non-enabled future dates as closed
+                // Show disabled style for all non-enabled dates (past or future)
+                $is_disabled_marked = !$is_enabled; // Show all non-enabled dates as closed
                 
                 $days[] = array(
                     'day' => $day,
@@ -117,35 +114,8 @@ class Upsite_Shortcodes {
                 <h2 class="upsite-hours-title"><?php echo esc_html($atts['title']); ?></h2>
             <?php endif; ?>
             
-            <!-- Month Navigation -->
-            <div class="upsite-calendar-navigation">
-                <button type="button" class="upsite-nav-btn upsite-prev-month" aria-label="<?php esc_attr_e('Previous month', 'upsite-opening-hours'); ?>">
-                    <span>‹</span>
-                </button>
-                <h3 class="upsite-current-month-title"></h3>
-                <button type="button" class="upsite-nav-btn upsite-next-month" aria-label="<?php esc_attr_e('Next month', 'upsite-opening-hours'); ?>">
-                    <span>›</span>
-                </button>
-            </div>
-            
-            <!-- Single Calendar Container -->
-            <div class="upsite-calendar-month">
-                <div class="upsite-calendar-grid">
-                    <!-- Day headers -->
-                    <div class="upsite-calendar-header">
-                        <div class="upsite-day-header">א'</div>
-                        <div class="upsite-day-header">ב'</div>
-                        <div class="upsite-day-header">ג'</div>
-                        <div class="upsite-day-header">ד'</div>
-                        <div class="upsite-day-header">ה'</div>
-                        <div class="upsite-day-header">ו'</div>
-                        <div class="upsite-day-header">ש'</div>
-                    </div>
-                    
-                    <!-- Calendar days (will be populated by JavaScript) -->
-                    <div class="upsite-calendar-days"></div>
-                </div>
-            </div>
+            <!-- Vanilla Calendar Container -->
+            <div class="upsite-calendar-container"></div>
             
             <!-- Legend -->
             <div class="upsite-calendar-legend">

@@ -38,11 +38,27 @@ class Upsite_Assets {
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('wp-color-picker');
         
+        // Enqueue Flatpickr for admin
+        wp_enqueue_style(
+            'flatpickr-admin',
+            'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
+            array(),
+            '4.6.13'
+        );
+        
+        wp_enqueue_script(
+            'flatpickr-admin',
+            'https://cdn.jsdelivr.net/npm/flatpickr',
+            array(),
+            '4.6.13',
+            false
+        );
+        
         // Enqueue admin CSS
         wp_enqueue_style(
             'upsite-hours-admin',
             UPSITE_HOURS_PLUGIN_URL . 'assets/css/admin-styles.css',
-            array('wp-color-picker'),
+            array('wp-color-picker', 'flatpickr-admin'),
             UPSITE_HOURS_VERSION
         );
         
@@ -50,7 +66,7 @@ class Upsite_Assets {
         wp_enqueue_script(
             'upsite-hours-admin',
             UPSITE_HOURS_PLUGIN_URL . 'assets/js/admin-calendar.js',
-            array('jquery', 'wp-color-picker'),
+            array('jquery', 'wp-color-picker', 'flatpickr-admin'),
             UPSITE_HOURS_VERSION,
             true
         );
@@ -119,11 +135,27 @@ class Upsite_Assets {
             return;
         }
         
+        // Enqueue Vanilla Calendar Pro from CDN (UMD build)
+        wp_enqueue_style(
+            'vanilla-calendar',
+            'https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.10/build/vanilla-calendar.min.css',
+            array(),
+            '2.9.10'
+        );
+        
+        wp_enqueue_script(
+            'vanilla-calendar',
+            'https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@2.9.10/build/vanilla-calendar.min.js',
+            array(),
+            '2.9.10',
+            false
+        );
+        
         // Enqueue frontend CSS
         wp_enqueue_style(
             'upsite-hours-frontend',
             UPSITE_HOURS_PLUGIN_URL . 'assets/css/frontend-styles.css',
-            array(),
+            array('vanilla-calendar'),
             UPSITE_HOURS_VERSION
         );
         
@@ -131,7 +163,7 @@ class Upsite_Assets {
         wp_enqueue_script(
             'upsite-hours-frontend',
             UPSITE_HOURS_PLUGIN_URL . 'assets/js/frontend-calendar.js',
-            array('jquery'),
+            array('jquery', 'vanilla-calendar'),
             UPSITE_HOURS_VERSION,
             true
         );

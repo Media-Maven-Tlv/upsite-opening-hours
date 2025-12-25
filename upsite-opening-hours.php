@@ -3,7 +3,7 @@
  * Plugin Name: Upsite Opening Hours
  * Plugin URI: https://github.com/Media-Maven-Tlv/upsite-opening-hours
  * Description: Manage and display opening hours with an interactive calendar interface for Superland and Lunapark websites
- * Version: 1.4.0
+ * Version: 1.6.0
  * Author: Upsite
  * Author URI: https://upsiteapp.co.il
  * Requires PHP: 7.4
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('UPSITE_HOURS_VERSION', '1.4.0');
+define('UPSITE_HOURS_VERSION', '1.6.0');
 define('UPSITE_HOURS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('UPSITE_HOURS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('UPSITE_HOURS_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -35,28 +35,22 @@ require_once UPSITE_HOURS_PLUGIN_DIR . 'includes/class-upsite-rest-api.php';
 require_once UPSITE_HOURS_PLUGIN_DIR . 'includes/class-upsite-shortcodes.php';
 require_once UPSITE_HOURS_PLUGIN_DIR . 'includes/class-upsite-assets.php';
 
-// GitHub Updater
-if (is_admin()) {
-    require_once UPSITE_HOURS_PLUGIN_DIR . 'updater.php';
-    
-    $config = array(
-        'slug' => plugin_basename(__FILE__),
-        'proper_folder_name' => 'upsite-opening-hours',
-        'api_url' => 'https://api.github.com/repos/Media-Maven-Tlv/upsite-opening-hours',
-        'raw_url' => 'https://raw.githubusercontent.com/Media-Maven-Tlv/upsite-opening-hours/main',
-        'github_url' => 'https://github.com/Media-Maven-Tlv/upsite-opening-hours',
-        'zip_url' => 'https://github.com/Media-Maven-Tlv/upsite-opening-hours/zipball/main',
-        'sslverify' => true,
-        'requires' => '5.0',
-        'tested' => '6.4',
-        'readme' => 'README.md',
-        'access_token' => '', // Leave empty for public repos
-    );
-    
-    if (class_exists('WP_GitHub_Updater')) {
-        new WP_GitHub_Updater($config);
-    }
-}
+// Plugin Update Checker - https://github.com/YahnisElsts/plugin-update-checker
+require_once UPSITE_HOURS_PLUGIN_DIR . 'plugin-update-checker/plugin-update-checker.php';
+
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$upsiteHoursUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/Media-Maven-Tlv/upsite-opening-hours/',
+    __FILE__,
+    'upsite-opening-hours'
+);
+
+// Set the branch that contains the stable release
+$upsiteHoursUpdateChecker->setBranch('main');
+
+// Optional: If you're using a private repository, uncomment and add your token:
+// $upsiteHoursUpdateChecker->setAuthentication('your-token-here');
 
 /**
  * Main plugin class

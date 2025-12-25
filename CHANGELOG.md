@@ -2,6 +2,42 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
+## [1.6.0] - 2025-12-25
+
+### Changed
+- **Major Update**: Switched from Flatpickr to Vanilla Calendar Pro for better design and functionality
+- Clean, modern calendar design with proper circular day buttons
+- Improved RTL support with correctly rotated navigation arrows
+- Dark purple circles for open dates, light purple for closed dates
+- Removed "סגור" text from calendar cells for cleaner look (visible in modal popup)
+- Better responsive design for mobile devices
+
+### Technical
+- Integrated Vanilla Calendar Pro v2.9.10 via CDN
+- Rewrote frontend-calendar.js to use Vanilla Calendar Pro API
+- Updated CSS for Vanilla Calendar Pro styling
+- Added mobile-specific breakpoints (480px, 360px)
+- Fixed timezone issues with date formatting
+
+## [1.5.0] - 2025-12-25
+
+### Changed
+- **Major Update**: Integrated Flatpickr library for reliable calendar functionality
+- Replaced custom calendar implementation with professional, lightweight library (Flatpickr 4.6.13)
+- Fixed all date alignment issues with proper RTL support
+- Full Hebrew locale integration with correct day/month names
+- Enhanced calendar reliability and accuracy
+- Purple circle design for open (dark) and closed (light) dates
+- Modal popup with opening hours on date click
+- Proper RTL arrow directions
+
+### Technical
+- Added Flatpickr v4.6.13 via CDN
+- Rewrote frontend-calendar.js to use Flatpickr API with onDayCreate callback
+- Updated CSS for Flatpickr RTL support and custom styling
+- Kept admin calendar with custom implementation
+- Maintained all existing features (legend, modal, list view)
+
 ## [1.4.0] - 2025-12-22
 
 ### Added

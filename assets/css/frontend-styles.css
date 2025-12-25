@@ -1,11 +1,11 @@
 /**
- * Frontend Styles
+ * Frontend Styles with Vanilla Calendar Pro
  *
  * @package UpsiteOpeningHours
- * @since 1.0.0
+ * @since 1.6.0
  */
 
-/* Base Styles - Minimal and Theme-Adaptive */
+/* Base Styles */
 .upsite-hours-calendar-widget,
 .upsite-hours-list {
     opacity: 0;
@@ -17,653 +17,555 @@
     opacity: 1;
 }
 
-.upsite-hours-empty {
-    padding: 20px;
-    text-align: center;
-    color: inherit;
-    font-style: italic;
-}
-
-/* Calendar Widget - iOS Style */
+/* Calendar Widget Container */
 .upsite-hours-calendar-widget {
     margin-block: 20px;
-    max-width: 494px!important; /* 380px * 1.3 = 494px */
+    max-width: 450px;
     margin-inline: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 .upsite-hours-title {
     font-size: 1.6em;
-    margin-block-end: 15px;
+    margin-block-end: 20px;
     color: inherit;
     text-align: center;
     font-weight: 600;
 }
 
-/* Month Navigation - iOS Style */
-.upsite-calendar-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-block-end: 20px;
-    gap: 10px;
+/* Vanilla Calendar Container */
+.upsite-calendar-container {
+    direction: rtl;
 }
 
-.upsite-nav-btn {
-    background: transparent;
-    color: var(--upsite-accent, #007AFF);
-    border: none;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 24px;
-    line-height: 1;
-    transition: opacity 0.2s ease;
-    border-radius: 6px;
+/* Override Vanilla Calendar styles */
+.vanilla-calendar {
+    width: 100% !important;
+    max-width: 380px !important;
+    font-size: 1em !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    padding: 20px !important;
+    direction: rtl !important;
+    margin: 0 auto !important;
 }
 
-.upsite-nav-btn:hover:not(:disabled) {
-    opacity: 0.7;
+.vanilla-calendar-header {
+    direction: rtl !important;
+    margin-bottom: 10px !important;
 }
 
-.upsite-nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
+.vanilla-calendar-header__content {
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
 }
 
-.upsite-current-month-title {
-    font-size: 1.2em;
-    margin: 0;
-    color: #333;
-    text-align: center;
-    flex: 1;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+/* Arrow buttons for RTL - rotate */
+.vanilla-calendar-arrow {
+    transform: rotate(180deg) !important;
 }
 
-/* Calendar Month Container - Minimal */
-.upsite-calendar-month {
-    background: transparent;
-    padding: 0;
+.vanilla-calendar-week {
+    direction: rtl !important;
 }
 
-/* Calendar Grid */
-.upsite-calendar-grid {
-    width: 100%;
+.vanilla-calendar-week__day {
+    font-size: 0.9em !important;
+    font-weight: 700 !important;
+    color: #666 !important;
 }
 
-.upsite-calendar-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    margin-block-end: 8px;
+.vanilla-calendar-days {
+    direction: rtl !important;
 }
 
-.upsite-day-header {
-    padding: 8px 2px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.7em;
-    color: #999;
-    background: transparent;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+.vanilla-calendar-day {
+    padding: 3px !important;
 }
 
-.upsite-calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
+.vanilla-calendar-day__btn {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 0.95em !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    line-height: 1 !important;
+    padding: 0 !important;
 }
 
-.upsite-calendar-day {
-    aspect-ratio: 1;
-    width: 52px; /* 40px * 1.3 = 52px */
-    height: 52px; /* 40px * 1.3 = 52px */
-    background: transparent;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transition: all 0.2s ease;
-    position: relative;
-    border-radius: 0;
-    min-height: 0;
-    overflow: hidden;
-}
-
-.upsite-calendar-day.empty {
-    background: transparent;
-    border: none;
-}
-
-.upsite-calendar-day.enabled {
-    cursor: pointer;
-    background: #5B21B6;
-    color: #fff;
-    border-radius: 50%;
-}
-
-.upsite-calendar-day.disabled {
-    color: #ccc;
-}
-
-.upsite-calendar-day.disabled-marked {
-    cursor: pointer;
-    background: #C4B5FD;
-    color: #5B21B6;
-    border-radius: 50%;
-}
-
-.upsite-calendar-day .day-number {
-    font-weight: 400;
-    font-size: 0.9em;
-    line-height: 1;
-    color: #333;
-    z-index: 2;
-    position: relative;
-}
-
-.upsite-calendar-day.enabled .day-number {
-    color: #fff;
-}
-
-.upsite-calendar-day.disabled .day-number {
-    color: #ccc;
-}
-
-.upsite-calendar-day.disabled-marked .day-number {
-    color: #5B21B6;
-}
-
-/* Remove small circle indicator - using full circle background instead */
-.upsite-calendar-day::before {
-    display: none;
-}
-
-/* Hover effect */
-.upsite-calendar-day.enabled:hover {
-    transform: scale(1.1);
-    box-shadow: 0 2px 8px rgba(91, 33, 182, 0.4);
-}
-
-.upsite-calendar-day.disabled-marked:hover {
+.vanilla-calendar-day__btn:hover {
     transform: scale(1.05);
 }
 
-.upsite-calendar-day .day-status {
-    font-size: 0.5em;
-    margin-block-start: 1px;
-    font-weight: 500;
-    opacity: 0.85;
-    line-height: 1;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-inline: 1px;
+/* Custom styling for open/closed days */
+.upsite-day-open {
+    background-color: #5e35b1 !important;
+    color: white !important;
+    font-weight: 600 !important;
 }
 
-/* Calendar Legend */
-.upsite-calendar-legend {
-    margin-block-start: 20px;
+.upsite-day-closed {
+    background-color: #b39ddb !important;
+    color: white !important;
+}
+
+.upsite-day-status {
+    display: none !important;
+}
+
+/* Today highlight */
+.vanilla-calendar-day__btn_today {
+    border: 2px solid #5e35b1 !important;
+}
+
+/* Selected day */
+.vanilla-calendar-day__btn_selected {
+    box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.3) !important;
+}
+
+/* Popup styles */
+.vc-popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
     text-align: center;
 }
 
-.upsite-calendar-legend .legend-text {
-    color: #007AFF;
+.vc-popup-status {
+    padding: 4px 12px;
+    border-radius: 12px;
     font-size: 0.9em;
-    margin-block-end: 12px;
-    text-decoration: underline;
-    cursor: pointer;
+    font-weight: 600;
 }
 
-.upsite-calendar-legend .legend-items {
+.vc-popup-status.open {
+    background: #5e35b1;
+    color: white;
+}
+
+.vc-popup-status.closed {
+    background: #b39ddb;
+    color: white;
+}
+
+.vc-popup-times {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #5e35b1;
+}
+
+.vc-popup-note {
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+}
+
+/* Legend */
+.upsite-calendar-legend {
+    margin-block-start: 25px;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.legend-text {
+    font-size: 1em;
+    color: #666;
+    margin-block-end: 12px;
+}
+
+.legend-items {
     display: flex;
     justify-content: center;
-    gap: 24px;
-    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.upsite-calendar-legend .legend-item {
+.legend-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
-.upsite-calendar-legend .legend-circle {
+.legend-circle {
     width: 24px;
     height: 24px;
     border-radius: 50%;
     display: inline-block;
 }
 
-.upsite-calendar-legend .legend-circle.open {
-    background: #5B21B6;
+.legend-circle.open {
+    background-color: #5e35b1;
 }
 
-.upsite-calendar-legend .legend-circle.closed {
-    background: #C4B5FD;
+.legend-circle.closed {
+    background-color: #b39ddb;
 }
 
-.upsite-calendar-legend .legend-label {
-    font-size: 0.9em;
+.legend-label {
+    font-size: 1.05em;
     color: #333;
     font-weight: 500;
 }
 
-/* Modal Styles - iOS Style */
+/* Modal Styles */
 .upsite-hours-modal {
     position: fixed;
-    z-index: 9999;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 9999;
     padding: 20px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
 }
 
 .upsite-hours-modal-content {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    background: white;
     border-radius: 20px;
-    padding: 28px 24px;
-    max-width: 320px;
+    padding: 30px;
+    max-width: 340px;
     width: 100%;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .upsite-hours-modal-close {
     position: absolute;
-    inset-inline-end: 10px;
-    inset-block-start: 10px;
-    font-size: 22px;
-    font-weight: 300;
-    color: #999;
-    cursor: pointer;
-    line-height: 1;
-    transition: opacity 0.2s;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 15px;
+    left: 15px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
     border-radius: 50%;
+    font-size: 1.4em;
+    line-height: 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #999;
 }
 
 .upsite-hours-modal-close:hover {
-    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
 }
 
-.upsite-hours-modal-content h3 {
-    font-size: 1.3em;
-    margin: 0 0 4px 0;
-    color: #000;
+#upsite-modal-date {
+    font-size: 1.4em;
+    margin-block-end: 8px;
+    color: #333;
     font-weight: 700;
-    letter-spacing: -0.02em;
 }
 
-.upsite-hours-modal-content #upsite-modal-day {
-    font-size: 0.95em;
-    color: #8e8e93;
-    margin-block-end: 20px;
-    font-weight: 400;
-}
-
-.upsite-modal-hours {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    border-radius: 0;
+#upsite-modal-day {
+    font-size: 1em;
+    color: #666;
     margin-block-end: 12px;
 }
 
-.upsite-modal-hours .hours-label {
-    font-size: 0.8em;
+.upsite-modal-status {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: 700;
+    margin-block-end: 20px;
+    text-align: center;
+}
+
+.upsite-modal-status.status-open {
+    background: #5e35b1;
+    color: white;
+}
+
+.upsite-modal-status.status-closed {
+    background: #b39ddb;
+    color: white;
+}
+
+.upsite-modal-hours {
+    margin-block: 20px;
+}
+
+.hours-label {
+    font-size: 0.9em;
+    color: #999;
     margin-block-end: 8px;
-    color: #8e8e93;
-    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .modal-times {
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--upsite-enabled-bg, #34C759);
-}
-
-.modal-times .time-value {
-    white-space: nowrap;
+    color: #5e35b1;
+    direction: rtl;
 }
 
 .modal-closed {
-    font-size: 2.2em;
+    font-size: 1.8em;
     font-weight: 700;
-    color: #FF3B30;
-    padding: 20px 0;
-    letter-spacing: -0.02em;
+    color: #b39ddb;
 }
 
 .modal-note {
-    background: transparent;
-    color: var(--upsite-special, #FF9500);
-    padding: 12px 16px;
-    border-radius: 12px;
+    margin-block-start: 15px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
     font-size: 0.95em;
-    font-weight: 600;
-    border: 2px solid var(--upsite-special, #FF9500);
+    color: #666;
 }
 
-/* Compact List View - iOS Style */
+/* List View Styles */
 .upsite-hours-list {
     margin-block: 20px;
-    max-width: 494px; /* 380px * 1.3 = 494px */
+    max-width: 600px;
     margin-inline: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-.upsite-list-month {
-    margin-block-end: 16px;
+.upsite-list-title {
+    font-size: 1.4em;
+    margin-block-end: 20px;
+    color: inherit;
+    text-align: center;
+    font-weight: 600;
+}
+
+.upsite-list-month-group {
+    margin-block-end: 25px;
 }
 
 .upsite-list-month-title {
-    font-size: 1.15em;
-    margin-block-end: 10px;
-    color: #000;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-block-end: 12px;
+    padding-block-end: 8px;
+    border-block-end: 2px solid #eee;
 }
 
 .upsite-list-dates {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    background: #e5e5ea;
-    border-radius: 10px;
-    overflow: hidden;
+    gap: 8px;
 }
 
 .upsite-list-date {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: #fff;
-    color: #000;
-    font-size: 0.9em;
+    flex-direction: column;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
     transition: all 0.2s ease;
 }
 
 .upsite-list-date:hover {
-    background: #f2f2f7;
+    background: rgba(0, 0, 0, 0.04);
     transform: translateX(4px);
 }
 
-/* LTR override */
-[dir="ltr"] .upsite-list-date:hover {
-    transform: translateX(-4px);
+.upsite-list-date-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.upsite-list-date.has-special {
-    position: relative;
-}
-
-.upsite-list-date.has-special::before {
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block: 0;
-    width: 3px;
-    background: var(--upsite-special, #FF9500);
-}
-
-.upsite-list-date.disabled {
-    opacity: 0.6;
-}
-
-.upsite-list-date.disabled:hover {
-    background: #fff;
-    transform: none;
-}
-
-.upsite-list-date .list-date {
+.upsite-list-date-day {
     font-weight: 600;
-    min-width: 70px;
-    font-size: 0.95em;
-    color: #000;
+    color: #333;
+    font-size: 1.05em;
 }
 
-.upsite-list-date .list-day {
-    flex: 1;
-    text-align: start;
-    font-size: 0.9em;
-    color: #3c3c43;
-}
-
-.upsite-list-date .list-hours {
+.upsite-list-date-times {
+    color: #5e35b1;
     font-weight: 600;
-    font-size: 0.95em;
-    white-space: nowrap;
-    color: var(--upsite-enabled-bg, #34C759);
-}
-
-.upsite-list-date .list-hours.list-closed {
-    color: #FF3B30;
-}
-
-.upsite-list-date .list-special {
-    padding: 3px 8px;
-    background: transparent;
-    border-radius: 6px;
-    font-size: 0.8em;
-    font-weight: 600;
-    color: var(--upsite-special, #FF9500);
-    border: 1px solid var(--upsite-special, #FF9500);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .upsite-hours-calendar-widget,
-    .upsite-hours-list {
-        max-width: 100%;
-        padding-inline: 10px;
-    }
-    
-    .upsite-hours-title {
-        font-size: 1.4em;
-    }
-    
-    .upsite-current-month-title {
-        font-size: 1.1em;
-    }
-    
-    .upsite-calendar-day {
-        padding: 3px;
-    }
-    
-    .upsite-calendar-day .day-number {
-        font-size: 0.9em;
-    }
-    
-    
-    .modal-times {
-        font-size: 1.8em;
-    }
-    
-    .upsite-hours-modal-content {
-        padding: 24px 20px;
-    }
-    
-    .modal-times {
-        font-size: 2em;
-    }
-    
-    .modal-closed {
-        font-size: 1.8em;
-    }
-}
-
-@media (max-width: 480px) {
-    .upsite-calendar-day {
-        padding: 2px;
-    }
-    
-    .upsite-calendar-day .day-number {
-        font-size: 0.85em;
-    }
-    
-    
-    .upsite-day-header {
-        padding: 6px 2px;
-        font-size: 0.65em;
-    }
-    
-    .upsite-nav-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 20px;
-    }
-    
-    .upsite-current-month-title {
-        font-size: 1em;
-    }
-    
-    .upsite-hours-modal-content {
-        padding: 20px 16px;
-    }
-    
-    .modal-times {
-        font-size: 2em;
-    }
-    
-    .modal-closed {
-        font-size: 1.8em;
-        padding: 16px 0;
-    }
-    
-    .upsite-list-date {
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 10px 14px;
-    }
-    
-    .upsite-list-date .list-date {
-        min-width: auto;
-    }
-    
-    .upsite-list-date .list-hours {
-        width: 100%;
-        text-align: start;
-    }
-}
-
-/* RTL Support using logical properties */
-[dir="rtl"] .upsite-calendar-grid,
-[dir="rtl"] .upsite-calendar-header {
     direction: rtl;
 }
 
+.upsite-list-date-note {
+    margin-block-start: 8px;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+}
+
+/* RTL Support */
 [dir="rtl"] .upsite-list-date:hover {
     transform: translateX(4px);
 }
 
-/* Dark Mode Support - iOS Style */
+/* Error message */
+.upsite-calendar-error {
+    padding: 20px;
+    text-align: center;
+    color: #d32f2f;
+    background: rgba(211, 47, 47, 0.1);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     .upsite-hours-modal {
         background: rgba(0, 0, 0, 0.6);
     }
     
     .upsite-hours-modal-content {
-        background: rgba(28, 28, 30, 0.95);
-        color: #fff;
+        background: #1e1e1e;
+        color: #e0e0e0;
     }
     
-    .upsite-hours-modal-content h3 {
-        color: #fff;
+    #upsite-modal-date {
+        color: #e0e0e0;
     }
     
-    .upsite-hours-modal-content #upsite-modal-day {
-        color: #8e8e93;
+    #upsite-modal-day {
+        color: #999;
     }
     
     .upsite-hours-modal-close {
-        color: #8e8e93;
+        background: rgba(255, 255, 255, 0.1);
+        color: #999;
     }
     
-    .upsite-current-month-title {
-        color: #fff;
+    .upsite-hours-modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #e0e0e0;
     }
     
-    .upsite-calendar-day .day-number {
-        color: #fff;
-    }
-    
-    .upsite-calendar-day.disabled .day-number {
-        color: #48484a;
-    }
-    
-    .upsite-calendar-day.disabled-marked .day-number {
-        color: #8e8e93;
-    }
-    
-    .upsite-calendar-day.enabled:hover .day-number,
-    .upsite-calendar-day.disabled-marked:hover .day-number {
-        background: rgba(255, 255, 255, 0.15);
-    }
-    
-    .upsite-day-header {
-        color: #636366;
-    }
-    
-    .upsite-list-month-title {
-        color: #fff;
-    }
-    
-    .upsite-list-dates {
-        background: #1c1c1e;
+    .modal-note {
+        background: rgba(255, 255, 255, 0.1);
+        color: #999;
     }
     
     .upsite-list-date {
-        background: #2c2c2e;
-        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
     }
     
     .upsite-list-date:hover {
-        background: #3a3a3c;
+        background: rgba(255, 255, 255, 0.08);
     }
     
-    .upsite-list-date .list-date {
-        color: #fff;
+    .upsite-list-month-title {
+        color: #e0e0e0;
+        border-block-end-color: #333;
     }
     
-    .upsite-list-date .list-day {
-        color: #aeaeb2;
+    .upsite-list-date-day {
+        color: #e0e0e0;
+    }
+    
+    .upsite-list-date-note {
+        color: #999;
+    }
+    
+    .upsite-calendar-legend {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .legend-label {
+        color: #e0e0e0;
     }
 }
 
-/* Print Styles */
-@media print {
-    .upsite-calendar-navigation {
-        display: none;
+/* Responsive */
+@media (max-width: 480px) {
+    .upsite-hours-calendar-widget {
+        max-width: 100% !important;
+        padding: 0 10px;
     }
     
-    .upsite-calendar-day:hover {
-        transform: none;
-        box-shadow: none;
+    .vanilla-calendar {
+        max-width: 100% !important;
+        padding: 12px !important;
     }
     
-    .upsite-hours-modal {
-        display: none !important;
+    .vanilla-calendar-day {
+        padding: 2px !important;
+    }
+    
+    .vanilla-calendar-day__btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.85em !important;
+    }
+    
+    .vanilla-calendar-header__content {
+        font-size: 1em !important;
+    }
+    
+    .vanilla-calendar-week__day {
+        font-size: 0.75em !important;
+    }
+    
+    .upsite-hours-modal-content {
+        padding: 25px 20px;
+        margin: 15px;
+    }
+    
+    .modal-times {
+        font-size: 1.6em;
+    }
+    
+    .upsite-list-date-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .upsite-calendar-legend {
+        padding: 12px;
+    }
+    
+    .legend-items {
+        gap: 15px;
+    }
+    
+    .legend-circle {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .legend-label {
+        font-size: 0.9em;
     }
 }
+
+@media (max-width: 360px) {
+    .vanilla-calendar-day__btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8em !important;
+    }
+    
+    .vanilla-calendar {
+        padding: 10px !important;
+    }
+}
+
