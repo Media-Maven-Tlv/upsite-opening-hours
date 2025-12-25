@@ -2,6 +2,12 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
+## [1.6.2] - 2025-12-25
+
+### Fixed
+- Fixed background colors not showing on calendar days (removed conflicting `background: transparent !important`)
+- Inline styles from JavaScript now properly apply for open/closed day colors
+
 ## [1.6.1] - 2025-12-25
 
 ### Fixed

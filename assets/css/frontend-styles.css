@@ -99,7 +99,6 @@ body .vanilla-calendar-day__btn {
     line-height: 1 !important;
     padding: 0 !important;
     border: none !important;
-    background: transparent !important;
     min-width: 44px !important;
     min-height: 44px !important;
     max-width: 44px !important;
@@ -124,7 +123,16 @@ body .vanilla-calendar-day__btn {
     border-radius: 50% !important;
     border: none !important;
     padding: 0 !important;
-    background: transparent !important;
+}
+
+/* Ensure inline styles from JS take precedence for colors */
+.vanilla-calendar-day__btn[style*="background-color"] {
+    background-color: inherit !important;
+}
+
+[class*="elementor"] .vanilla-calendar-day__btn[style*="background-color"],
+.elementor-widget-container .vanilla-calendar-day__btn[style*="background-color"] {
+    background-color: inherit !important;
 }
 
 /* Custom styling for open/closed days */
