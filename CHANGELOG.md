@@ -2,6 +2,13 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
+## [1.6.1] - 2025-12-25
+
+### Fixed
+- Fixed Elementor CSS conflicts overriding calendar button styles
+- Added high specificity CSS selectors to prevent theme/builder interference
+- Ensured consistent button sizing (44px) regardless of Elementor kit settings
+
 ## [1.6.0] - 2025-12-25
 
 ### Changed

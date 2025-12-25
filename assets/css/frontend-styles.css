@@ -83,7 +83,10 @@
     padding: 3px !important;
 }
 
-.vanilla-calendar-day__btn {
+.vanilla-calendar-day__btn,
+.upsite-hours-calendar-widget .vanilla-calendar-day__btn,
+.upsite-hours-calendar-widget .vanilla-calendar button.vanilla-calendar-day__btn,
+body .vanilla-calendar-day__btn {
     width: 44px !important;
     height: 44px !important;
     font-size: 0.95em !important;
@@ -95,20 +98,47 @@
     transition: all 0.2s ease !important;
     line-height: 1 !important;
     padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
 }
 
 .vanilla-calendar-day__btn:hover {
     transform: scale(1.05);
 }
 
+/* Override Elementor button styles */
+[class*="elementor"] .vanilla-calendar-day__btn,
+.elementor-widget-container .vanilla-calendar-day__btn,
+.elementor-element .vanilla-calendar-day__btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+    font-size: 0.95em !important;
+    border-radius: 50% !important;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
 /* Custom styling for open/closed days */
-.upsite-day-open {
+.upsite-day-open,
+[class*="elementor"] .upsite-day-open,
+.elementor-widget-container .upsite-day-open {
     background-color: #5e35b1 !important;
     color: white !important;
     font-weight: 600 !important;
 }
 
-.upsite-day-closed {
+.upsite-day-closed,
+[class*="elementor"] .upsite-day-closed,
+.elementor-widget-container .upsite-day-closed {
     background-color: #b39ddb !important;
     color: white !important;
 }
