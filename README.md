@@ -1,6 +1,6 @@
 # Upsite Opening Hours
 
-~Current Version:1.6.2~
+~Current Version:1.7.0~
 
 A WordPress plugin for managing and displaying opening hours with an interactive calendar interface for Superland and Lunapark websites.
 

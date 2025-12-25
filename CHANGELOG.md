@@ -2,18 +2,17 @@
 
 All notable changes to the Upsite Opening Hours plugin will be documented in this file.
 
-## [1.6.2] - 2025-12-25
+## [1.7.0] - 2025-12-25
+
+### Changed
+- Improved calendar styling and responsive design
+- Better mobile support with adjusted breakpoints
+- Cleaner calendar appearance without "סגור" text on cells
+- Status (open/closed) visible in modal popup on click
 
 ### Fixed
-- Fixed background colors not showing on calendar days (removed conflicting `background: transparent !important`)
-- Inline styles from JavaScript now properly apply for open/closed day colors
-
-## [1.6.1] - 2025-12-25
-
-### Fixed
-- Fixed Elementor CSS conflicts overriding calendar button styles
-- Added high specificity CSS selectors to prevent theme/builder interference
-- Ensured consistent button sizing (44px) regardless of Elementor kit settings
+- Fixed calendar overflow on mobile devices
+- Fixed elliptical day buttons - now properly circular
 
 ## [1.6.0] - 2025-12-25
 
